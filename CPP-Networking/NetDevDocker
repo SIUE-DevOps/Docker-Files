@@ -1,0 +1,27 @@
+############################################################
+# Dockerfile for Networing Dev
+# Based on Ubuntu
+############################################################
+
+# Set the base image to Ubuntu Baseimage
+FROM phusion/baseimage
+
+# File Author / Maintainer
+MAINTAINER josh@hauptj.com
+
+# Update the repository sources list - REDUNDANT
+RUN apt-get update
+
+################## BEGIN INSTALLATION ######################
+
+# Update the repository sources list once more
+RUN apt-get update && apt-get upgrade -y
+
+# Install GIT, C and C++ compilers and libraries
+RUN apt-get install -y git build-essential clang-3.8 clang++-3.8 lldb-3.8 gcc g++ libboost-all-dev libudt-dev libcurl4-openssl-dev
+
+##################### INSTALLATION END #####################
+
+# Expose server port range
+EXPOSE 52000-53000
+EXPOSE 52000-53000/udp
